@@ -1,7 +1,7 @@
 ---
 description: Analyze Claude Code session data for weekly review
 argument-hint: [week|date-range]
-allowed-tools: Read, Bash(python:*,source:*)
+allowed-tools: Read, Bash(python3:*)
 ---
 
 # Analyze Sessions Workflow
@@ -20,15 +20,15 @@ If $ARGUMENTS is provided, use it to set the period.
 
 ## Step 2: Run Session Extraction
 
-Execute the session data extraction script:
+Execute the session data extraction script (uses only Python stdlib, no venv needed):
 
 ```bash
-source ${CLAUDE_PLUGIN_ROOT}/.venv/bin/activate && python ${CLAUDE_PLUGIN_ROOT}/scripts/extract_session_data.py --week WEEK
+python3 ${CLAUDE_PLUGIN_ROOT}/scripts/extract_session_data.py --week WEEK
 ```
 
 Or for date range:
 ```bash
-source ${CLAUDE_PLUGIN_ROOT}/.venv/bin/activate && python ${CLAUDE_PLUGIN_ROOT}/scripts/extract_session_data.py --since START --until END
+python3 ${CLAUDE_PLUGIN_ROOT}/scripts/extract_session_data.py --since START --until END
 ```
 
 Capture the JSON output.
@@ -110,7 +110,8 @@ Would you like me to:
 
 ## Notes
 
-- The session analyzer script must be set up with a Python venv
+- The session analyzer uses only Python stdlib - no venv or pip install needed
+- Requires Python 3.7+ (for datetime.fromisoformat)
 - Tokens include input, output, and cache_read for total context usage
 - Phase detection provides finer-grained categorization within long sessions
 - This output is designed to be inserted into weekly review notes

@@ -68,17 +68,22 @@ cp -r noteplan-plugin /your/noteplan/dir/.claude-plugin
 
 ## Session Analyzer
 
-The plugin includes a Python script for analyzing Claude Code session data:
+The plugin includes a Python script for analyzing Claude Code session data. It uses only Python stdlib, so no installation is needed:
 
 ```bash
-# Setup (one time)
-cd noteplan-plugin
+# Run analysis (no setup required - uses Python stdlib only)
+python3 scripts/extract_session_data.py --week W03
+```
+
+### Development Setup
+
+For running tests during development:
+
+```bash
 uv venv
 source .venv/bin/activate
 uv pip install pytest
-
-# Run analysis
-source .venv/bin/activate && python scripts/extract_session_data.py --week W03
+pytest tests/ -v
 ```
 
 ### Session Categories
