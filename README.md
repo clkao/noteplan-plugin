@@ -32,6 +32,11 @@ A Claude Code plugin that provides productivity workflows for NotePlan.
 
 In Claude Code, run:
 ```
+/install-github-plugin clkao/noteplan-plugin
+```
+
+Or use the plugin command:
+```
 /plugin marketplace add clkao/noteplan-plugin
 ```
 
