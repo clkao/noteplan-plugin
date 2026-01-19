@@ -30,14 +30,14 @@ A Claude Code plugin that provides productivity workflows for NotePlan.
 
 ### Option 1: From GitHub (Recommended)
 
-In Claude Code, run:
-```
-/install-github-plugin clkao/noteplan-plugin
-```
-
-Or use the plugin command:
+In Claude Code, first add the marketplace:
 ```
 /plugin marketplace add clkao/noteplan-plugin
+```
+
+Then install the plugin:
+```
+/plugin install noteplan@noteplan-plugin
 ```
 
 ### Option 2: Local Plugin Directory
