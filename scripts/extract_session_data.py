@@ -131,9 +131,10 @@ def extract_project_name(project_path):
     path = Path(project_path)
     name = path.name
 
-    # Handle NotePlan special case
-    if "noteplan" in name.lower() or "NotePlan" in project_path:
-        return "noteplan"
+    # Handle NotePlan app data directory special case
+    # Only match the actual NotePlan app bundle path, not any dir with "noteplan" in name
+    if "co.noteplan.NotePlan" in project_path:
+        return "noteplan-data"
 
     return name
 

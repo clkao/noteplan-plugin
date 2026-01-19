@@ -218,14 +218,20 @@ def test_extract_project_name():
     """Extract short project name from projectPath."""
     from extract_session_data import extract_project_name
 
+    # NotePlan app data directory gets special name
     path = "/Users/clkao/Library/Containers/co.noteplan.NotePlan3/Data/Library/Application Support/co.noteplan.NotePlan3"
-    assert extract_project_name(path) == "noteplan"
+    assert extract_project_name(path) == "noteplan-data"
 
+    # Regular git repos use directory name
     path2 = "/Users/clkao/git/recce-gtm"
     assert extract_project_name(path2) == "recce-gtm"
 
     path3 = "/Users/clkao/git/clipa-ledger"
     assert extract_project_name(path3) == "clipa-ledger"
+
+    # noteplan-plugin should NOT be shortened to "noteplan"
+    path4 = "/Users/clkao/git/noteplan-plugin"
+    assert extract_project_name(path4) == "noteplan-plugin"
 
 
 def test_process_sessions(tmp_path):
