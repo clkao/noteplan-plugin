@@ -26,12 +26,13 @@ Search all notes for tasks scheduled before today:
 
 ## Step 3: Scan for Orphan Tasks
 
-Find tasks that have no project link and no schedule:
+Find tasks that have no project link, no schedule, and no categorizing tag:
 
 **Criteria:**
 - Is a checkbox `[ ]` or task `* `
 - Does NOT contain `[[Project Name]]` link
 - Does NOT have `>date` or `>week` scheduling
+- Does NOT have a categorizing tag (`@waiting`, `@artifact`, `@chore`)
 - Is NOT in a project note (under `Notes/00 - Projects/`)
 
 ## Step 4: Present Findings
@@ -44,16 +45,16 @@ Show results in batches of 5-10 for easier processing:
 **Overdue by date:**
 1. [ ] "Task description" - scheduled >2026-01-05 (14 days ago)
    Location: Calendar/20260105.md
-   Options: [R]eschedule | [F]ile to project | [W]aiting | [D]rop
+   Options: [R]eschedule | [F]ile to project | [W]aiting | [X] done | [D]rop
 
 2. [ ] "Task description" - scheduled >2026-W01 (2 weeks ago)
    Location: Notes/00 - Projects/SomeProject.md
-   Options: [R]eschedule | [W]aiting | [D]rop
+   Options: [R]eschedule | [W]aiting | [X] done | [D]rop
 
-**Orphan tasks (no project, no date):**
+**Orphan tasks (no project, no date, no tag):**
 3. [ ] "Task description"
    Location: Calendar/20260110.md
-   Options: [R]eschedule | [F]ile to project | [D]rop
+   Options: [R]eschedule | [F]ile to project | [X] done | [D]rop
 
 How would you like to handle each? (e.g., "1R 2W 3F")
 ```
@@ -75,6 +76,10 @@ For each task based on Human Partner's choice:
 - Add `@waiting` tag
 - Ask: "Waiting on whom/what?"
 - Add note if provided
+
+**[X] done:**
+- Task was actually completed but not checked off
+- Mark as `[x]` with `@done(YYYY-MM-DD)` timestamp
 
 **[D]rop:**
 - Confirm: "Delete task or mark cancelled [-]?"
@@ -103,6 +108,7 @@ At the end, show:
 - Rescheduled: X
 - Filed to projects: Y
 - Marked @waiting: Z
+- Marked done: A
 - Dropped/cancelled: W
 
 **Still pending:** M tasks (if any skipped)

@@ -74,10 +74,15 @@ Found N unfiled tasks:
 - personal errand
 
 → Unclear (need input):
-- ambiguous task
+- ambiguous task (what does this mean?)
 
 Proceed with filing? Specify any changes needed.
 ```
+
+**During approval**, the Human Partner may:
+- Clarify what ambiguous tasks mean
+- Suggest restructuring projects (merge, rename, create new)
+- Override suggested destinations
 
 ## Step 6: Apply Changes
 
@@ -89,7 +94,8 @@ After Human Partner approval, for each task being filed:
    - **IMPORTANT: Preserve all sub-items and notes** - don't lose context
 
 2. **Remove the task from its source location**
-   - Delete from inbox/weekly note/TBL.md after moving
+   - Delete from inbox/weekly note after moving
+   - **Remove duplicates from TBL.md** - tasks often accumulate there
 
 3. **For Ideas.md**: Just add to appropriate section, no scheduling needed
 

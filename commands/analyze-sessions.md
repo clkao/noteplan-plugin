@@ -62,6 +62,20 @@ For sessions with `messagesWithTimestamps`, detect phase transitions:
 - Phase end = next phase start (or session end for last phase)
 - Allocate tokens proportionally by duration
 
+**Example:**
+
+Given messages:
+1. "weekly review" at 10:00 → review
+2. "carry tasks to W04" at 10:15 → review (same)
+3. "now let's update the skill" at 10:25 → skill-dev (TRANSITION)
+4. "add error handling" at 10:35 → skill-dev (same)
+5. "weekly plan" at 10:50 → planning (TRANSITION)
+
+Phases detected:
+- Phase 1: review (10:00-10:25, 25 min)
+- Phase 2: skill-dev (10:25-10:50, 25 min)
+- Phase 3: planning (10:50-end)
+
 ## Step 5: Aggregate Metrics
 
 Sum metrics by category:
