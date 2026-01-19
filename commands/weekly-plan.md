@@ -5,88 +5,91 @@ allowed-tools: Read, Edit, Glob, Grep, Bash(git:*)
 
 # Weekly Plan Workflow
 
-Plan the upcoming week by reviewing carried-over tasks, scheduled items, and setting priorities.
+Start-of-week planning session. Best run on Monday.
 
-## Pre-Planning Checklist
+## Pre-Planning Prompts
 
-Before planning, help the Human Partner review:
+Before planning, remind the Human Partner to:
 
-1. **Calendar for the week** - Any meetings, deadlines, or commitments?
-2. **@waiting items** - Any responses received that unblock work?
-3. **Blocked tasks** - Anything that can now proceed?
+1. **Check calendar** -2/+4 weeks for upcoming commitments and recent events
+2. **Clear physical inbox** - Process any paper items
+3. **Clean desktop / downloads folder** - Digital hygiene
 
-Ask about these briefly before proceeding.
+Ask briefly about these before proceeding.
 
-## Step 1: Find Previous Week
+## Step 1: Gather Context
 
-Determine current ISO week. Read the previous week's note `Calendar/YYYY-W(nn-1).md`.
+Read these files to understand current state:
 
-## Step 2: Show Carried Over Tasks
+- **Last week's note**: `Calendar/YYYY-W(nn-1).md`
+- **This week's note**: `Calendar/YYYY-Wnn.md` (may not exist yet)
+- **Quarterly goals**: `Calendar/YYYY-Q1.md` (or current quarter)
+- **Active projects**: `Notes/00 - Projects/TBL.md`
 
-Find unchecked tasks `[ ]` from previous week's note. Present as:
+## Step 2: Present Summary
 
+Show the Human Partner a consolidated view:
+
+### Carryover from Last Week
+
+Open tasks from last week's note that weren't completed:
 ```
-## Carried Over from Last Week
-
-[ ] Task 1 (from [[Project A]])
-[ ] Task 2 (from [[Project B]])
-[ ] Task 3 (orphan - no project)
-
-Which of these should carry forward to this week?
-```
-
-## Step 3: Show Scheduled This Week
-
-Search project notes and calendar for tasks scheduled this week:
-- Tasks with `>YYYY-Wnn` where nn = current week
-- Tasks with `>YYYY-MM-DD` in this week's date range
-
-Present these as scheduled work for the week.
-
-## Step 4: Surface Past Due Items
-
-Scan for tasks scheduled before current week that are still open:
-- `>YYYY-MM-DD` where date < today
-- `>YYYY-Wnn` where week < current week
-
-Present with options: reschedule, drop, or mark @waiting.
-
-## Step 5: Process Inbox
-
-Check for unfiled tasks in:
-- Current weekly note's Inbox section
-- Recent daily notes
-
-Suggest filing or ask if Human Partner wants to run `/noteplan:file-inbox`.
-
-## Step 6: Set Priorities
-
-Ask the Human Partner to pick top 3-5 priorities for the week:
-
-```
-## This Week's Priorities
-
-Based on carried over tasks, scheduled work, and past due items:
-
-What are your top priorities for this week?
-(I'll mark these with !! for importance)
+[ ] Task description (from last week)
 ```
 
-## Step 7: Create/Update Weekly Note
+### Scheduled for This Week
 
-Create or update `Calendar/YYYY-Wnn.md` with:
+Tasks from project notes scheduled `>YYYY-Wnn` (this week) or to specific dates this week.
 
+### Past Due
+
+Tasks scheduled before this week that are still open:
+```
+[ ] Task (was due YYYY-MM-DD)
+```
+
+### Inbox Items
+
+Unfiled tasks from daily notes / inbox sections.
+
+### Waiting Items
+
+Open tasks tagged `@waiting` that may need follow-up.
+
+### Q1 Goal Check
+
+Quick status on each quarterly goal:
+- Goal 1: On track? / Needs attention?
+- Goal 2: On track? / Needs attention?
+
+## Step 3: Help Prioritize
+
+Ask the Human Partner:
+
+```
+What are your top 3 priorities this week?
+```
+
+Suggest moving past-due items to this week or dropping them.
+
+## Step 4: Update Notes
+
+1. **Create this week's note** if needed (use weekly template if available)
+2. **Move carryover tasks** to new week or mark dropped
+3. **File inbox items** - run `/noteplan:file-inbox` if needed
+4. **Add priorities** to weekly note with `!!` importance markers
+
+Weekly note structure:
 ```markdown
-# Week NN - YYYY
+# Week NN
 
 ## Priorities
-- [ ] Priority 1 !!
-- [ ] Priority 2 !!
+- [ ] !! Priority 1
+- [ ] !! Priority 2
 - [ ] Priority 3
 
-## Scheduled
-- [ ] Scheduled task 1
-- [ ] Scheduled task 2
+## Chores
+- [ ] ...
 
 ## Inbox
 (empty after filing)
@@ -94,7 +97,7 @@ Create or update `Calendar/YYYY-Wnn.md` with:
 ## Notes
 ```
 
-## Step 8: Commit
+## Step 5: Commit
 
 After changes are complete:
 ```bash
@@ -106,4 +109,4 @@ git add -A && git commit -m "weekly-plan: set up W(nn) with N priorities"
 - This workflow is typically run on Monday
 - Focus on helping Human Partner make decisions, not making them for them
 - Keep the planning session focused - avoid going deep into individual tasks
-- Reference Q1 goals from `Calendar/YYYY-Q1.md` if relevant
+- Reference quarterly goals to ensure week aligns with larger objectives

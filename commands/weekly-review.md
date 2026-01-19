@@ -5,21 +5,23 @@ allowed-tools: Read, Edit, Glob, Grep, Bash(git:*)
 
 # Weekly Review Workflow
 
-Review the week's progress, close out completed work, and prepare for next week.
+End-of-week reflection and cleanup. Best run on Friday.
 
-## Step 1: Find This Week's Note
+## Step 1: Gather Context
 
-Determine current ISO week. Read `Calendar/YYYY-Wnn.md`.
+Determine current ISO week and read:
+
+- **This week's note**: `Calendar/YYYY-Wnn.md`
+- **Daily notes from this week**: `Calendar/YYYYMMDD.md`
+- **Quarterly goals**: `Calendar/YYYY-Q1.md`
+
+Also grep for `@done(YYYY-MM-DD` with dates in this week to find all completed tasks across all notes.
 
 ## Step 2: Summarize Completed Tasks
 
-Find all completed tasks `[x]` from this week across:
-- Weekly note
-- Daily notes from this week
-- Project notes (tasks completed this week)
+Find all completed tasks `[x]` from this week across all notes.
 
 Present summary:
-
 ```
 ## Completed This Week
 
@@ -27,16 +29,17 @@ Present summary:
 - [[Project A]]: 5 tasks completed
   - [x] Task 1
   - [x] Task 2
-  ...
 - [[Project B]]: 3 tasks completed
   ...
 
 **Total:** N tasks completed across M projects
+
+Celebrate wins!
 ```
 
 ## Step 3: Review Open Tasks
 
-Find unchecked tasks `[ ]` from this week. For each, ask:
+Find unchecked tasks `[ ]` from this week's note. For each, ask:
 
 ```
 ## Open Tasks
@@ -68,51 +71,65 @@ These are blocked on others:
    - Any update?
 ```
 
-## Step 5: Quarterly Goal Check
+## Step 5: Clean Up Daily Notes
 
-Read `Calendar/YYYY-Q1.md` (or current quarter). Check progress against goals:
+For each daily note from this week, check for leftover tasks:
+
+**Synced lines** (tasks with `^blockid`):
+- These already exist in the source project note
+- Remove them from the daily note - they're duplicates
+
+**Standalone tasks** (no `^blockid`):
+- File to appropriate project note with scheduling (e.g., `>YYYY-W(nn+1)`)
+- Ask Human Partner where they belong if unclear
+
+## Step 6: Find and Move Straggler Tasks
+
+Grep for `>YYYY-Wnn` (this week) across ALL notes to find unmoved tasks:
+
+- Reschedule open tasks to next week (`>YYYY-W(nn+1)`)
+- **Weekly note chores**: Move unmoved chores to next week's weekly note (NOT to project notes)
+
+## Step 7: Quarterly Goal Check
+
+Read `Calendar/YYYY-Q1.md` (or current quarter). Check progress:
 
 ```
 ## Q1 Goal Check
 
-**Goals from Q1:**
-- [ ] Goal 1: [status - on track / at risk / blocked]
-- [ ] Goal 2: [status]
+**Goals:**
+- [ ] Goal 1: [On track / Behind / Blocked]
+- [ ] Goal 2: [On track / Behind / Blocked]
 
+What would move the needle next week?
 Any adjustments needed?
 ```
 
-## Step 6: Generate Weekly Summary
+## Step 8: Update Next Week's Note
 
-Create a summary to add to the weekly note:
+If next week's note exists, update it with:
+
+- **Synced tasks** (with `^blockid`): Can add to weekly note WITH the identifier - they will sync
+  - KEEP the `>YYYY-Wnn` scheduling in the project file - don't remove it
+- **Scheduled-only tasks** (no `^blockid`): Do NOT duplicate - they're already in project notes
+  - Carryover is documented in review notes instead
+
+## Step 9: Generate Weekly Summary
+
+Add to this week's note:
 
 ```markdown
-## Week NN Review
+## W(nn) Review Notes (YYYY-MM-DD)
 
-**Completed:** X tasks across Y projects
-**Carried over:** Z tasks to next week
-**Blocked:** N items @waiting
+**Wins:** accomplishment1, accomplishment2, accomplishment3
 
-### Highlights
-- Major accomplishment 1
-- Major accomplishment 2
-
-### Carried to Next Week
-- [ ] Task 1
-- [ ] Task 2
+**Carried to W(nn+1):** task1, task2, task3
 ```
 
-## Step 7: Apply Changes
-
-1. Update task statuses in weekly and project notes
-2. Add `@archived` tag to completed tasks if Human Partner wants to preserve context
-3. Carry tasks to next week's note if it exists
-4. Update weekly note with review summary
-
-## Step 8: Commit
+## Step 10: Commit
 
 ```bash
-git add -A && git commit -m "weekly-review: completed X tasks, carried Y to next week"
+git add -A && git commit -m "weekly-review: W(nn) - X completed, Y carried"
 ```
 
 ## Notes
@@ -121,3 +138,4 @@ git add -A && git commit -m "weekly-review: completed X tasks, carried Y to next
 - Focus on reflection and closure, not planning
 - Celebrate completions - acknowledge progress made
 - If Claude Code session analysis is desired, suggest running `/noteplan:analyze-sessions`
+- Health metrics (exercise, meditation, weight) can be logged in `## Health` section if Human Partner tracks them

@@ -5,7 +5,7 @@ allowed-tools: Read, Edit, Glob, Grep, Bash(git:*)
 
 # File Inbox Workflow
 
-Process unfiled tasks from the weekly note inbox and daily notes, filing them to appropriate project notes.
+Scan inbox for unfiled tasks and propose where to file them.
 
 ## Step 1: Get Active Projects
 
@@ -17,57 +17,89 @@ Determine the current ISO week number and find the weekly note at `Calendar/YYYY
 
 ## Step 3: Scan for Unfiled Tasks
 
-Scan these locations for tasks that are not linked to any project:
+Scan these locations **in order of priority**:
 
-1. **Current weekly note** - Look for `## Inbox` section, extract tasks without `[[project]]` links
-2. **Recent daily notes** - Check `Calendar/YYYYMMDD.md` files from the last 7 days
+1. **Weekly notes (main focus)** - Current and recent week's notes get messy
+   - Look for tasks NOT linked to a project or scheduled
+   - Items without NotePlan sync IDs (`^xxxxx`) are often unfiled
+
+2. **TBL.md (below Active Projects section)** - Often has accumulated unfiled tasks and duplicates
+   - Check for items that should be in project notes
+
+3. **Daily notes** - SKIP unless explicitly asked
+   - Daily note tasks are already scheduled to that day
+   - Only scan `## Inbox` section if it exists
 
 An unfiled task is:
 - A checkbox item `[ ]` or `* ` task
 - Does NOT contain a `[[Project Name]]` link
+- Does NOT have a sync ID (`^xxxxx`) linking it elsewhere
 - Is NOT already tagged with `@archived`
 
-## Step 4: Match and Propose Filing
+## Step 4: Categorize and Match Tasks
 
-For each unfiled task:
-1. Analyze task content for keywords matching active projects
-2. Determine confidence level (high/medium/low)
-3. If no clear match, mark as "needs manual filing"
+For each unfiled task, categorize by type:
+
+| Category | Typical Destination |
+|----------|---------------------|
+| Work tasks | Appropriate work project based on keywords |
+| Random ideas, side projects | `Notes/Ideas.md` |
+| Personal errands | Weekly note `## Chores` section |
+| Personal/family tasks | Personal project notes |
+| Recurring daily tasks | Leave in weekly note (e.g., "schedule comm") |
+
+Determine confidence level (high/medium/low) for each match.
 
 ## Step 5: Present Filing Plan
 
-Show the Human Partner a summary in this format:
+Show the Human Partner a summary grouped by destination:
 
 ```
 ## Inbox Filing Proposal
 
 Found N unfiled tasks:
 
-**High confidence:**
-1. "Task description" → [[Project Name]]
-2. "Task description" → [[Project Name]]
+→ [[Project A]]:
+- task description
+- another task
 
-**Needs confirmation:**
-3. "Task description" → [[Suggested Project]]? (reason for uncertainty)
+→ [[Project B]]:
+- task description
 
-**No clear match:**
-4. "Task description" → ? (suggest creating project or manual filing)
+→ [[Ideas]]:
+- random thought
+- side project idea
+
+→ Weekly Chores:
+- personal errand
+
+→ Unclear (need input):
+- ambiguous task
 
 Proceed with filing? Specify any changes needed.
 ```
 
 ## Step 6: Apply Changes
 
-After Human Partner approval:
-1. For each task being filed:
-   - Add `[[Project Name]]` link to the task
-   - Optionally move task to the project note if requested
-2. Remove filed tasks from inbox section
-3. Commit changes: `git add -A && git commit -m "file-inbox: filed N tasks to M projects"`
+After Human Partner approval, for each task being filed:
+
+1. **Move the task to the destination project note**
+   - Add to appropriate section in the project file
+   - Include scheduling: `>YYYY-Wnn` for the current or next week
+   - **IMPORTANT: Preserve all sub-items and notes** - don't lose context
+
+2. **Remove the task from its source location**
+   - Delete from inbox/weekly note/TBL.md after moving
+
+3. **For Ideas.md**: Just add to appropriate section, no scheduling needed
+
+4. **Commit changes**: `git add -A && git commit -m "file-inbox: filed N tasks to M projects"`
 
 ## Notes
 
 - Never delete tasks without explicit permission
-- Preserve task formatting (tags, dates, importance markers)
+- Preserve task formatting (tags, dates, importance markers, sub-items)
 - If uncertain about a match, ask rather than guess
-- Update the Inbox section to reflect filed items
+- Watch for tasks with detailed sub-notes (like fee requirements) - preserve them!
+- If many tasks cluster around a theme, suggest creating a new project
+- Tasks with sync IDs (`^xxxxx`) may already be synced elsewhere - check before moving
