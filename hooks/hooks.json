@@ -1,0 +1,17 @@
+{
+  "description": "NotePlan productivity hooks for workflow suggestions",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if the current working directory appears to be a NotePlan data directory (contains Calendar/, Notes/, or CLAUDE.md mentioning NotePlan). If so, output a brief reminder about available NotePlan workflows. Keep it under 100 words. Format: 'NotePlan detected. Available workflows: /noteplan:weekly-plan (Monday), /noteplan:weekly-review (Friday), /noteplan:file-inbox, /noteplan:scan-past-due, /noteplan:analyze-sessions.' If not in NotePlan directory, output nothing.",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
