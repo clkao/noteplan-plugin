@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    {
+      "name": "noteplan",
+      "version": "0.1.0",
+      "description": "NotePlan productivity workflows for Claude Code",
+      "repository": "https://github.com/clkao/noteplan-plugin",
+      "author": "clkao",
+      "tags": ["productivity", "noteplan", "planning", "review"],
+      "path": "."
+    }
+  ]
+}
