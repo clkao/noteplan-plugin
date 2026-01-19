@@ -28,14 +28,21 @@ A Claude Code plugin that provides productivity workflows for NotePlan.
 
 ## Installation
 
-### Option 1: Local Plugin Directory
+### Option 1: From GitHub (Recommended)
+
+In Claude Code, run:
+```
+/plugin marketplace add clkao/noteplan-plugin
+```
+
+### Option 2: Local Plugin Directory
 
 ```bash
 # From Claude Code
 cc --plugin-dir /path/to/noteplan-plugin
 ```
 
-### Option 2: Copy to Project
+### Option 3: Copy to Project
 
 ```bash
 cp -r noteplan-plugin /your/noteplan/dir/.claude-plugin
