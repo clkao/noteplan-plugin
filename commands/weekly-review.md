@@ -39,21 +39,21 @@ Celebrate wins!
 
 ## Step 3: Review Open Tasks
 
-Find unchecked tasks `[ ]` from this week's note. For each, ask:
+Find all unchecked tasks `[ ]` scheduled for this week across project notes and the weekly note. Group by project and present in batches of 5-10:
 
 ```
-## Open Tasks
+## Open Tasks (Batch 1 of N — [[Project A]])
 
-These tasks are still open from this week:
-
-1. [ ] Task description (from [[Project]])
+1. [ ] Task description
    → Carry to next week / Reschedule to date / Drop / Mark @waiting
 
-2. [ ] Task description (orphan)
-   → Carry to next week / File to project / Drop
+2. [ ] Task description
+   → Carry to next week / Reschedule to date / Drop / Mark @waiting
+
+Running tally: X carried, Y rescheduled, Z dropped
 ```
 
-Process Human Partner's decisions for each task.
+Get decisions on each batch before proceeding to the next. After all batches, show final tally.
 
 ## Step 4: Review @waiting Items
 
@@ -105,7 +105,21 @@ What would move the needle next week?
 Any adjustments needed?
 ```
 
-## Step 8: Update Next Week's Note
+## Step 8: Goal Tracking and Reflection
+
+Read the quarterly goals from `Calendar/YYYY-Qn.md`. For each goal that has measurable targets, ask the Human Partner for this week's data. Derive the prompts from whatever goals are currently set — do not hardcode specific metrics.
+
+Then prompt for reflections:
+
+```
+- Great: What went well this week?
+- Tricky: What was hard or frustrating?
+- Change: What would you do differently?
+```
+
+Include this data in the quarterly review entry and in the weekly summary (Step 10).
+
+## Step 9: Update Next Week's Note
 
 If next week's note exists, update it with:
 
@@ -114,19 +128,23 @@ If next week's note exists, update it with:
 - **Scheduled-only tasks** (no `^blockid`): Do NOT duplicate - they're already in project notes
   - Carryover is documented in review notes instead
 
-## Step 9: Generate Weekly Summary
+## Step 10: Generate Weekly Summary
 
-Add to this week's note:
+Add to this week's note. Include goal-tracking data from Step 8:
 
 ```markdown
 ## W(nn) Review Notes (YYYY-MM-DD)
 
+**Goal tracking:** (metrics from Step 8, matching quarterly goal targets)
+
 **Wins:** accomplishment1, accomplishment2, accomplishment3
+
+**Tricky:** challenge1, challenge2
 
 **Carried to W(nn+1):** task1, task2, task3
 ```
 
-## Step 10: Commit
+## Step 11: Commit
 
 ```bash
 git add -A && git commit -m "weekly-review: W(nn) - X completed, Y carried"
@@ -138,4 +156,4 @@ git add -A && git commit -m "weekly-review: W(nn) - X completed, Y carried"
 - Focus on reflection and closure, not planning
 - Celebrate completions - acknowledge progress made
 - If Claude Code session analysis is desired, suggest running `/noteplan:analyze-sessions`
-- Health metrics (exercise, meditation, weight) can be logged in `## Health` section if Human Partner tracks them
+- Goal tracking metrics are prompted in Step 8 based on quarterly goals

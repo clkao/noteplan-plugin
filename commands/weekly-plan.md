@@ -28,7 +28,9 @@ Read these files to understand current state:
 
 ## Step 2: Present Summary
 
-Show the Human Partner a consolidated view:
+Present each section below one at a time. Get the Human Partner's input on each section before moving to the next. If any section has more than 10 items, break it into batches of 5-10.
+
+Show the Human Partner:
 
 ### Carryover from Last Week
 
@@ -77,7 +79,7 @@ Suggest moving past-due items to this week or dropping them.
 1. **Create this week's note** if needed (use weekly template if available)
 2. **Move carryover tasks** to new week or mark dropped
 3. **File inbox items** - run `/noteplan:file-inbox` if needed
-4. **Add priorities** to weekly note with `!!` importance markers
+4. **Add priorities** to weekly note with ! or !! importance markers
 
 Weekly note structure:
 ```markdown
