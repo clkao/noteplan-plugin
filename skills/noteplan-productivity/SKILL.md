@@ -1,7 +1,7 @@
 ---
 name: NotePlan Productivity
 description: This skill should be used when the user asks about "NotePlan", "weekly review", "weekly plan", "file inbox", "scan past due", "@waiting tasks", "@artifact tasks", "TBL", "active projects", or mentions NotePlan tags (@waiting, @artifact, @chore, @archived). Provides knowledge of CL's NotePlan productivity system including tag scheme, file naming, directory structure, and workflows.
-version: 0.1.0
+version: 0.1.1
 ---
 
 # NotePlan Productivity System
